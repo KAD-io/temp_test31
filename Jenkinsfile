@@ -5,16 +5,8 @@ pipeline {
       steps{
         script {
           sh 'cd /var/jenkins_home/workspace/test31'
-        }
-      steps{
-        script {
           sh 'python3 -m pytest . -m unittests --alluredir allure-results'
+          sh 'python3 -m pip install -r requirements.txt --break-system-packages'
         }
-      steps{
-        script {
-          sh 'python3 -m pytest . -m unittests --alluredir allure-results'
-        }
-      }
-    }
   }
 }}}
