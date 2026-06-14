@@ -23,7 +23,10 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 dir('/var/jenkins_home/workspace/test31') {
-                    sh 'allure generate allure-results -o allure-report --clean'
+                    sh """
+                        export PATH="\$PATH:/var/jenkins_home/tools/org.allurereport.jenkins.tools.AllureCommandlineInstallation/allure/bin"
+                        allure generate allure-results -o allure-report --clean
+                        """
                 }
             }
         }
