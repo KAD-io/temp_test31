@@ -8,5 +8,12 @@ pipeline {
           sh 'python3 -m pip install -r requirements.txt --break-system-packages'
           sh 'python3 -m pytest . -m $scope --alluredir allure-results -v'
         }
+      }
+    }
   }
-}}}
+  post {
+        always {
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        }
+    }
+}
